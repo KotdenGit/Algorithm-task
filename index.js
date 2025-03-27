@@ -76,4 +76,105 @@ function without (arr, ...val) {
     return arr.filter(item => !val.includes(item));
 }
 
-console.log(without([2, 1, 2, 3], 1, 2)) //-> [3]
+// console.log(without([2, 1, 2, 3], 1, 2)) //-> [3]
+
+// 6)
+// Реализовать функцию indexOfAll.
+//     Первый аргумент - массив, второй - значение
+
+// Функция возвращает массив со всеми индексами, которые соответствуют переданному значению
+function indexOfAll(array, value) {
+    let indices = [];
+    let idx = array.indexOf(value);// метод idexOf() позволяет найти первое значение совподающее по указаному,
+    // второй параметр указывает с кого индекса начинается поиск
+    while (idx != -1) { // если искомого значения нет - метод возвращает -1
+        indices.push(idx);
+        idx = array.indexOf(value, idx + 1); // здесь мы увеличиваем индекс следующего элемента чтоб продолжить поиск остальных элементов
+    }
+    return array, indices;
+}
+
+//console.log(indexOfAll([1, 2, 3, 1, 2, 3], 1)); //-> [0, 3]
+//console.log(indexOfAll([1, 2, 3], 4)); //-> []
+
+// 7)
+// Функция принимает массив meetups,
+//     и возвращает суммарное количество человек, находящихся на активных митапах
+
+//membersOnActiveMeetups(meetups); // 1500
+function membersOnActiveMeetups (arrayMeetups) {
+    return arrayMeetups.reduce((accumulator, currentValue) =>
+       currentValue.isActive ? (accumulator + currentValue.members) : accumulator, 
+    0 // значения аккамулятора мы передаём как второй аргумент после функции колл-бэк
+    ); 
+}
+
+// Пример:
+    // const meetups = [
+    //     { name: 'JavaScript', isActive: true, members: 100 },
+    //     { name: 'Angular', isActive: true, members: 900 },
+    //     { name: 'Node', isActive: false, members: 600 },
+    //     { name: 'React', isActive: true, members: 500 },
+    // ];
+ // console.log (membersOnActiveMeetups(meetups)); // 1500
+
+// 8)
+const factory = (xValue, yValue, funcSumName) => {
+//...
+
+this.x = xValue;
+this.y = yValue;
+this[funcSumName] = () =>  this.x + this.y // добавление функции с заланным именем
+return this 
+}
+//const obj = factory(12, 23, 'myFunc');
+
+//console.log(obj.x, obj.y, obj.myFunc()); // 12, 23, 35
+
+//9)
+const object = {
+    id: 0,
+    name: 'Obj-name',
+    // ...
+    toString() {
+        return this.name; // Преобразование объекта в строку, когда объект используется в строковом контексте
+    },
+    valueOf() {
+        return this.id; // Преобразование объекта в примитивное значение, контекст числовой
+    },
+};
+
+// console.log(`Name: ${object}`); 		// Name: Obj-name
+// console.log(+object);            		// 0
+// console.log(object + 10);        		// 10
+
+// 0)
+// Каррирование
+//add(4)(3)(1) //=> 8
+//*/
+// function add(a) { 
+//     return function(b) {
+//       return function(c) {
+//         return a + b + c;
+//       };
+//     };
+//   }
+//const add = (x) => (y) => (z) => x+y+z; // - один из пособов передачи аргументов при каррировании
+// либо ---> 
+function curry(f) { // curry(f) выполняет каррирование
+    return function(a) {
+      return function(b) {
+        return function(c) {
+            return f(a, b, c);
+        };
+      };
+    };
+  }
+  
+  // использование
+  function curriedSum(a, b, c) { //оборачиваемая функция
+    return a + b +c;
+  }
+  
+  let add = curry(curriedSum); // функция обёртки 
+ console.log(add(4)(3)(1));
