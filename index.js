@@ -148,7 +148,7 @@ const object = {
 // console.log(+object);            		// 0
 // console.log(object + 10);        		// 10
 
-// 0)
+// 10)
 // Каррирование
 //add(4)(3)(1) //=> 8
 //*/
@@ -205,3 +205,17 @@ function getMaxSubSum (array) {
 // console.log(getMaxSubSum([-2, -1, 1, 2])) //= 3
 // console.log(getMaxSubSum([100, -9, 2, -3, 5])) //= 100
 // console.log(getMaxSubSum([1, 2, 3])) //= 6 (берём все)
+
+//12)
+
+function camelize(str) {
+    return str
+      .split('-') // разделить строку на массив слов
+      .map((word, index) =>
+        index === 0 ? word : word[0].toUpperCase() + word.slice(1)
+      ) // преобразовать каждое слово, кроме первого
+      .join(''); // объединить обратно в строку
+  }
+// console.log(camelize("background-color") == 'backgroundColor');
+// console.log(camelize("list-style-image") == 'listStyleImage');
+// console.log(camelize("-webkit-transition") == 'WebkitTransition');
