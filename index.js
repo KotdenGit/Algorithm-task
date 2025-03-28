@@ -219,3 +219,33 @@ function camelize(str) {
 // console.log(camelize("background-color") == 'backgroundColor');
 // console.log(camelize("list-style-image") == 'listStyleImage');
 // console.log(camelize("-webkit-transition") == 'WebkitTransition');
+
+// 13)
+// Напишите функцию filterRange(arr, a, b), которая принимает массив arr, ищет в нём элементы между a и b и отдаёт массив этих элементов.
+
+//     Например:
+
+function filterRange(arr, a, b){
+    return arr.filter(num => (num >= a && num <= b));
+}
+
+let arr = [5, 3, 8, 1];
+
+let filtered = filterRange(arr, 1, 4);
+
+
+
+//console.log( filtered ); // 3,1
+// 14)
+// Напишите функцию unique(arr), которая возвращает массив, содержащий только уникальные элементы arr.
+
+//     Например:
+
+function unique(arr) {
+    return [...new Set(arr)]; // конструкция Set работает с объектом удаляя повторяющеися элементы, 
+                              // спрэд-оператором мы преобразуем в массив (также можно использывать Array.from)
+  }
+
+let strings = ['aaa', 'aaa', 'zzz', 'xxx', 'aaa', 'bbb', 'aaa',  'xxx', 'ccc'];
+
+//console.log( unique(strings) ); // ['aaa', 'zzz', 'xxx', 'bbb', 'ccc']
