@@ -177,4 +177,31 @@ function curry(f) { // curry(f) выполняет каррирование
   }
   
   let add = curry(curriedSum); // функция обёртки 
- console.log(add(4)(3)(1));
+ //console.log(add(4)(3)(1));
+ //11)
+// На входе массив чисел, например: arr = [1, -2, 3, 4, -9, 6].
+
+//     Задача: найти непрерывный подмассив в arr, сумма элементов в котором максимальна.
+
+//     Функция getMaxSubSum(arr) должна возвращать эту сумму.
+
+//     Если все элементы отрицательные – ничего не берём(подмассив пустой) и сумма равна «0»
+
+function getMaxSubSum (array) {
+    let maxSybSum = 0; // максимальная сумма
+    let currentSybSum = 0; // текущая сумма
+    for (let i of array) { //алгоритмом Кадане
+        currentSybSum = Math.max(0, currentSybSum + i); // обнуляем если субмассив заходит в зону с минусовым значением
+        maxSybSum = Math.max(maxSybSum, currentSybSum); // сравниваем с предыдущим субмассивом
+    }
+    return maxSybSum;
+}
+
+//     Например:
+
+// console.log(getMaxSubSum([-1, 2, 3, -9])) //= 5 (сумма выделенных)
+// console.log(getMaxSubSum([2, -1, 2, 3, -9])) //= 6
+// console.log(getMaxSubSum([-1, 2, 3, -9, 11]))//= 11
+// console.log(getMaxSubSum([-2, -1, 1, 2])) //= 3
+// console.log(getMaxSubSum([100, -9, 2, -3, 5])) //= 100
+// console.log(getMaxSubSum([1, 2, 3])) //= 6 (берём все)
