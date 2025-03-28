@@ -249,3 +249,33 @@ function unique(arr) {
 let strings = ['aaa', 'aaa', 'zzz', 'xxx', 'aaa', 'bbb', 'aaa',  'xxx', 'ccc'];
 
 //console.log( unique(strings) ); // ['aaa', 'zzz', 'xxx', 'bbb', 'ccc']
+
+// 15
+// Напишите функцию sumTo(n), которая вычисляет сумму чисел 1 + 2 + ... + n.
+function sumTo(n) {
+    let sum = 0;
+    for (let item = 0; item <= n; item++ ) {
+        sum += item;
+    }
+    return sum;
+}
+//console.log(sumTo(3));
+
+//16)
+// Напишите функцию, которая принимает строку из одного или нескольких слов и возвращает ту же строку, но с перевернутыми словами из X и более букв (X — второй параметр ф-ии)..
+// Переданные строки будут состоять только из букв и пробелов.
+function spinWords(str, x) {
+    return str
+        .split(' ') //разбиваем на массив для того чтоб работать с отдельным словом
+        .map((word) =>
+        word.length > x //проверяем условие длины каждого слова
+            ? word.split('').reverse().join('') //для переворота слова преобразуем в массив и обратно
+            : word
+        )
+        .join(' '); // общий результат преобразуем в строку
+}
+//Examples:
+// console.log(spinWords( "Hey fellow warriors", 5 )) //=> returns "Hey wollef sroirraw"
+// console.log(spinWords( "This is a test", 10)) //=> returns "This is a test"
+// console.log(spinWords( "This is another test", 3 )) //=> returns "sihT is rehtona tset"
+
