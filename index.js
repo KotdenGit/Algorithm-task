@@ -279,3 +279,51 @@ function spinWords(str, x) {
 // console.log(spinWords( "This is a test", 10)) //=> returns "This is a test"
 // console.log(spinWords( "This is another test", 3 )) //=> returns "sihT is rehtona tset"
 
+// 17)
+function filter_list (arr) {
+    return arr.filter(item => typeof item == 'number');
+}
+//console.log(filter_list([1,2,'a','b'])); //== [1,2]
+//console.log(filter_list([1,'a','b',0,15])); //== [1,0,15]
+//console.log(filter_list([1,2,'aasf','1','123',123])); //== [1,2,123]
+
+// 18)
+// Возвести в квадрат каждую цифру числа и соединить их.
+// Например, если мы запустим 9119 через функцию, выйдет 811181, потому что 9^2 - это 81, а 1^2 - 1.
+// Примечание: функция принимает целое число и возвращает целое число.
+function connectSquares (num) {
+    return num
+        .toString() //преобразуем числов строку
+        .split('') //разделяем на массив чисел
+        .map(digit =>
+            (digit ** 2).toString() // возводим в кадрат и преобразуем в строку
+        )
+        .join(''); // склеваем в строку
+}
+//console.log(connectSquares(9119)); //  811181
+// 19)
+// Написать функцию persistence, которая принимает положительный параметр num и возвращает число,
+// которое нужно умножить цифры в num, пока не дойдете до единственной цифры.
+
+function persistence(num) {
+    let count = 0;
+    while (num > 9) {
+      let digit = 1;
+      const numStr = String(num);
+      for (let i = 0; i < numStr.length; i++) {
+        digit *= parseInt(numStr[i]);
+      }
+      num = digit;
+      count++;
+    }
+    return count;
+  }
+
+// Примеры:
+//console.log(persistence(39) === 3) 	// because 3*9 = 27, 2*7 = 14, 1*4=4
+//                        			// and 4 has only one digit
+
+//console.log(persistence(999) === 4) 	// because 9*9*9 = 729, 7*2*9 = 126,
+//                         		// 1*2*6 = 12, and finally 1*2 = 2
+
+//console.log(persistence(4) === 0) 		// because 4 is already a one-digit number
