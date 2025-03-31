@@ -230,11 +230,7 @@ function filterRange(arr, a, b){
 }
 
 let arr = [5, 3, 8, 1];
-
 let filtered = filterRange(arr, 1, 4);
-
-
-
 //console.log( filtered ); // 3,1
 // 14)
 // Напишите функцию unique(arr), которая возвращает массив, содержащий только уникальные элементы arr.
@@ -327,3 +323,23 @@ function persistence(num) {
 //                         		// 1*2*6 = 12, and finally 1*2 = 2
 
 //console.log(persistence(4) === 0) 		// because 4 is already a one-digit number
+
+//20)
+// Создать функцию с именем divisors / Divisors, которая принимает целое число n> 1 и возвращает массив со всеми делителями целого числа (кроме 1 и самого числа),
+// от наименьшего до наибольшего. Если число простое, вернуть строку '(integer) is prime'.
+
+function divisors (num) {
+    let dev = [];
+    for (let i = 2; i < (num/2); i++) {
+        (num % i) == 0 ? dev.push(i) : null;
+    }
+    if (dev.length){
+        return dev;
+    }
+    return `${num} is prime`;
+}
+
+// Примеры:
+//console.log(divisors(12)); // should return [2,3,4,6]
+// console.log(divisors(25)); // should return [5]
+// console.log(divisors(13)); // should return "13 is prime"
