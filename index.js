@@ -404,15 +404,31 @@ function sortOddDigit (arr) {
 // 25)
 // Написать функцию, которая будет возвращать количество отдельных нечувствительных к регистру буквенных символов и числовых цифр,
 // которые встречаются во входной строке более одного раза. Предполагается, что входная строка содержит только буквы (как в верхнем, так и в нижнем регистре) и цифры.
+function duplicateCount(text) {
+    let charMap = {};
+    let lowerText = text.toLowerCase(); // переводим все значения в нижний ригистр
+    let count = 0; // создаём счётчик повотряющихся значений
 
+    for (let char of lowerText) {
+        charMap[char] = (charMap[char] || 0) + 1; // находим элемент либо дабавляем новый чтоб присвоить количество в строке
+    }
+
+    for (let key in charMap) {
+        if (charMap[key] > 1) { // если в объекте под данным ключём-буквой есть значения больше 1, прибавляем счётчик
+            count++;
+        }
+    }
+
+    return count;
+}
 // Примеры
-// "abcde" -> 0 # no characters repeats more than once
-// "aabbcde" -> 2 # 'a' and 'b'
-// "aabBcde" -> 2 # 'a' occurs twice and 'b' twice (`b` and `B`)
-// "indivisibility" -> 1 # 'i' occurs six times
-// "Indivisibilities" -> 2 # 'i' occurs seven times and 's' occurs twice
-// "aA11" -> 2 # 'a' and '1'
-// "ABBA" -> 2 # 'A' and 'B' each occur twice
+console.log(duplicateCount("abcde")) // -> 0 # no characters repeats more than once
+console.log(duplicateCount("aabbcde")) // -> 2 # 'a' and 'b'
+console.log(duplicateCount("aabBcde")) // -> 2 # 'a' occurs twice and 'b' twice (`b` and `B`)
+console.log(duplicateCount("indivisibility")) // -> 1 # 'i' occurs six times
+console.log(duplicateCount("Indivisibilities")) // -> 2 # 'i' occurs seven times and 's' occurs twice
+console.log(duplicateCount("aA11")) // -> 2 # 'a' and '1'
+console.log(duplicateCount("ABBA")) // -> 2 # 'A' and 'B' each occur twice
 
 
 // 26)
@@ -421,6 +437,6 @@ function minMax(arr) {
     return [Math.min(...arr), Math.max(...arr)];
 }
 // Примеры
- console.log(minMax([1,2,3,4,5]))  // == [1,5]
- console.log(minMax([2334454,5])) //== [5, 2334454]
- console.log(minMax([1]))         //   == [1, 1]
+//  console.log(minMax([1,2,3,4,5]))  // == [1,5]
+//  console.log(minMax([2334454,5])) //== [5, 2334454]
+//  console.log(minMax([1]))         //   == [1, 1]
