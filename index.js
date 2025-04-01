@@ -1,3 +1,26 @@
+// 0)
+// Путь до поля объекта
+// Нужно написать функцию get. 
+// Путь - строка, разделенная точкой. Функция должна вернуть соответствующее поле объекта.
+// Запрашиваемое поле в объекте точно есть
+// */
+const obj = {
+    a: {
+        b: {
+            c: 'd'
+        },
+        e: 'f'
+    }
+};
+
+
+function get(obj, path) {
+    return path.split('.').reduce((acc, key) => acc[key], obj); // раздиляем path по точке, последовательнпо проходим по свойствам объекта
+}
+
+// console.log(get(obj, 'a.b')); // {c: 'd'}
+// console.log(get(obj, 'a.b.c')); // 'd'
+// console.log(get(obj, 'a.e')); // 'f'
 // 1)
 // Первый аргумент - массив, второй - колбек-функция, которая применяется на массив
 // Колбек-функция применяется на каждый элемент массива и проверяет условие
@@ -412,23 +435,24 @@ function duplicateCount(text) {
     for (let char of lowerText) {
         charMap[char] = (charMap[char] || 0) + 1; // находим элемент либо дабавляем новый чтоб присвоить количество в строке
     }
-
+    
     for (let key in charMap) {
         if (charMap[key] > 1) { // если в объекте под данным ключём-буквой есть значения больше 1, прибавляем счётчик
             count++;
         }
+
     }
 
     return count;
 }
 // Примеры
-console.log(duplicateCount("abcde")) // -> 0 # no characters repeats more than once
-console.log(duplicateCount("aabbcde")) // -> 2 # 'a' and 'b'
-console.log(duplicateCount("aabBcde")) // -> 2 # 'a' occurs twice and 'b' twice (`b` and `B`)
-console.log(duplicateCount("indivisibility")) // -> 1 # 'i' occurs six times
-console.log(duplicateCount("Indivisibilities")) // -> 2 # 'i' occurs seven times and 's' occurs twice
-console.log(duplicateCount("aA11")) // -> 2 # 'a' and '1'
-console.log(duplicateCount("ABBA")) // -> 2 # 'A' and 'B' each occur twice
+// console.log(duplicateCount("abcde")) // -> 0 # no characters repeats more than once
+// console.log(duplicateCount("aabbcde")) // -> 2 # 'a' and 'b'
+// console.log(duplicateCount("aabBcde")) // -> 2 # 'a' occurs twice and 'b' twice (`b` and `B`)
+// console.log(duplicateCount("indivisibility")) // -> 1 # 'i' occurs six times
+// console.log(duplicateCount("Indivisibilities")) // -> 2 # 'i' occurs seven times and 's' occurs twice
+// console.log(duplicateCount("aA11")) // -> 2 # 'a' and '1'
+// console.log(duplicateCount("ABBA")) // -> 2 # 'A' and 'B' each occur twice
 
 
 // 26)
