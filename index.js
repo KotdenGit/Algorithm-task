@@ -343,3 +343,47 @@ function divisors (num) {
 //console.log(divisors(12)); // should return [2,3,4,6]
 // console.log(divisors(25)); // should return [5]
 // console.log(divisors(13)); // should return "13 is prime"
+
+// 21)
+// Дана строка. Вернуть длину самого короткого слова
+function getLengthOfShortestWord(str) {
+    return str
+        .replace(/[.,]/g, '')
+        .split(' ')
+        .reduce((a, b) => a.length <= b.length ? a : b)
+        .length;
+
+}
+// Пример:
+//console.log(getLengthOfShortestWord("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."))// => 2
+
+
+// 22)
+// Написать ф-ию, которая принимает 3 целочисленных значения a, b, c. Ф-ия должна возвращать true,
+// сли треугольник можно построить со сторонами заданной длины, и false в любом другом случае.
+function isTriangle(a, b, c) {
+    return a + b > c && a + c > b && b + c > a;
+}
+// Примеры:
+console.log(isTriangle(1,2,2));// true
+console.log(isTriangle(7,2,2));// false
+
+// 23)
+// Вернуть средний символ слова. Если длина слова нечетная, вернуть средний символ.
+// Если длина слова четная, вернуть 2 средних символа.
+
+// Примеры:
+// getMiddle("test") 	// should return "es"
+// getMiddle("testing") 	// should return "t"
+// getMiddle("middle") 	// should return "dd"
+// getMiddle("A") 	// should return "A"
+
+
+// 24)
+// Дан массив чисел. Необходимо отсортировать нечетные числа в порядке возрастания, 
+// оставив четные числа на их исходных позициях.
+
+// Примеры:
+// [7, 1]  =>  [1, 7]
+// [5, 8, 6, 3, 4]  =>  [3, 8, 6, 5, 4]
+// [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]  =>  [1, 8, 3, 6, 5, 4, 7, 2, 9, 0]
