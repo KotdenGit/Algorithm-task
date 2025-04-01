@@ -365,25 +365,38 @@ function isTriangle(a, b, c) {
     return a + b > c && a + c > b && b + c > a;
 }
 // Примеры:
-console.log(isTriangle(1,2,2));// true
-console.log(isTriangle(7,2,2));// false
+// console.log(isTriangle(1,2,2));// true
+// console.log(isTriangle(7,2,2));// false
 
 // 23)
 // Вернуть средний символ слова. Если длина слова нечетная, вернуть средний символ.
 // Если длина слова четная, вернуть 2 средних символа.
-
+function getMiddle(word) {
+    let lengthWord = word.length;
+    if (lengthWord % 2 == 0) {
+        return word[lengthWord/2 - 1] + word[lengthWord/2];
+    } else {
+        return word[Math.floor(lengthWord / 2)];
+    }
+}
 // Примеры:
-// getMiddle("test") 	// should return "es"
-// getMiddle("testing") 	// should return "t"
-// getMiddle("middle") 	// should return "dd"
-// getMiddle("A") 	// should return "A"
+// console.log(getMiddle("test")) //should return "es"
+// console.log(getMiddle("testing")) //should return "t"
+// console.log(getMiddle("middle")) //should return "dd"
+// console.log(getMiddle("A")) //should return "A"
 
 
 // 24)
 // Дан массив чисел. Необходимо отсортировать нечетные числа в порядке возрастания, 
 // оставив четные числа на их исходных позициях.
+function sortOddDigit (arr) {
+    let oddNumbers = arr.filter(num => num % 2 !== 0).sort((a, b) => a - b); // создайм массив из нечётных и сортируем
+    let index = 0;
 
+    return arr.map(num => num % 2 !== 0 ? oddNumbers[index++] : num); //подставляем нечётные числа из массива выше
+
+}
 // Примеры:
-// [7, 1]  =>  [1, 7]
-// [5, 8, 6, 3, 4]  =>  [3, 8, 6, 5, 4]
-// [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]  =>  [1, 8, 3, 6, 5, 4, 7, 2, 9, 0]
+console.log(sortOddDigit([7, 1]))  //=>  [1, 7]
+console.log(sortOddDigit([5, 8, 6, 3, 4]))  //=>  [3, 8, 6, 5, 4]
+console.log(sortOddDigit([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]))  //=>  [1, 8, 3, 6, 5, 4, 7, 2, 9, 0]
