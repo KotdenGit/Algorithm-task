@@ -21,6 +21,7 @@ function get(obj, path) {
 // console.log(get(obj, 'a.b')); // {c: 'd'}
 // console.log(get(obj, 'a.b.c')); // 'd'
 // console.log(get(obj, 'a.e')); // 'f'
+
 // 1)
 // Первый аргумент - массив, второй - колбек-функция, которая применяется на массив
 // Колбек-функция применяется на каждый элемент массива и проверяет условие
@@ -464,3 +465,62 @@ function minMax(arr) {
 //  console.log(minMax([1,2,3,4,5]))  // == [1,5]
 //  console.log(minMax([2334454,5])) //== [5, 2334454]
 //  console.log(minMax([1]))         //   == [1, 1]
+
+// 27)
+function isPalindrome(str) {
+    let i = 0;
+    let j = str.length - 1;
+    
+    while (i < j) {
+      if (str[i] !== str[j]) {
+        return false;
+      }
+      i++;
+      j--;
+    }
+    
+    return true;
+  }
+// console.log(isPolyndrome("otto"));
+// console.log(isPolyndrome("ot56to"));
+
+// const promise2 = new Promise((resolve, reject) => {
+//     reject("Ошибка!");
+// });
+
+// promise2
+//     .then(result => {
+//         console.log(result);
+//     })
+//     .catch(error => {
+//         console.log(error);                     //1 Ошибка!
+//         return Promise.reject("Новая ошибка!"); // 
+//     })
+//     .catch(error => {
+//         console.log(error);     //2 Новая ошибка! ???
+//     })
+//     .finally(() => {
+//         console.log("Завершено!");  // 3 Завершено!
+//     });
+
+// setTimeout(function timeout() {
+//     console.log('1'); //
+//     }, 0);  
+   
+//    let p = new Promise(function(resolve, reject) {
+//     console.log('2'); // ??
+//     resolve();
+//     });
+   
+//    p.then(function(){
+//     console.log('3');
+//     });
+   
+//    console.log('4');
+   // 2 4 3 1 
+
+const a = 2;
+
+(function test() {
+  console.log(a);
+})()
