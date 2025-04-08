@@ -1,5 +1,22 @@
 //1. Написать свою кастомную функцию map и добавить в прототип Array
 
+Array.prototype.customMap = function(callback) {
+    const result = []; // Создаем новый массив для результатов
+
+    for (let i = 0; i < this.length; i++) {
+        if (this.hasOwnProperty(i)) {                // Проверяем чтобы избежать обработки унаследованных свойств.
+            result.push(callback(this[i], i, this)); // Вызываем коллбэк и добавляем результат
+        }
+    }
+
+    return result; // Возвращаем новый массив с преобразованными значениями
+};
+
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.customMap(num => num * 2);
+
+console.log(doubled); // [2, 4, 6, 8]
+
 //2. Написать свою функцию глубокого копирования
 
 function deepClone(obj) {
@@ -66,5 +83,4 @@ function countFiles(obj) {
 }
 
 const result = countFiles(fileStructure);
-console.log(result); // должно вывести количество файлов в структуре
-                    //В приведенном примере, результат должен быть равен 8, так как в структуре восемь файлов.
+//console.log(result); // должно вывести количество файлов в структуре - 8
