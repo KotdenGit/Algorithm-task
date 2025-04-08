@@ -21,6 +21,12 @@ function deepClone(obj) {
   
     return clone;
   }
+
+const original = { a: 1, b: { c: 2 } };
+const copy = deepClone(original);
+//console.log(copy)
+copy.b.c = 42; // Оригинальный объект НЕ изменится
+//console.log(original.b.c); // 2
   
 
 //3. Задача на обход объекта рекурсивно:
@@ -46,7 +52,17 @@ const fileStructure = {
 };
 
 function countFiles(obj) {
-    // ваш код здесь
+    let count = 0;
+
+    for (let key in obj) {
+        if (typeof obj[key] === 'string') {
+            count++; // Если значение — строка, это файл, увеличиваем счетчик
+        } else if (typeof obj[key] === 'object') {
+            count += countFiles(obj[key]); // Рекурсивный вызов для папки
+        }
+    }
+
+    return count;
 }
 
 const result = countFiles(fileStructure);
