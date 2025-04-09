@@ -85,6 +85,48 @@ function countFiles(obj) {
 const result = countFiles(fileStructure);
 //console.log(result); // должно вывести количество файлов в структуре - 8
 
+//4. Написать свою функцию, которая будет принимать массив и возвращать вложенный объект,
+// где ключами будут элементы массива, а значениями - вложенные объекты. 
+function arrayToNestedObject(arr) {
+    // Начинаем с пустого объекта
+    let nestedObject = null;
+
+    // Проходим по массиву с конца, чтобы вложенность была правильной
+    for (let i = arr.length - 1; i >= 0; i--) {
+        nestedObject = { value: arr[i], next: nestedObject };
+    }
+
+    return nestedObject;
+}
+
+// Пример использования
+const array = [1, 2, 3, 4];
+const nestedObject = arrayToNestedObject(array);
+console.log(JSON.stringify(nestedObject, null, 2));
+
+//5. Написать функцию, которая будет возвращать n-ое число Фибоначчи без рекурсии.
+// Последовательность Фибоначчи: 0, 1, 1, 2, 3, 5, 8, 13, ...
+function nthFibo(n) {
+    if (n === 1) return 0;
+    if (n === 2) return 1;
+    
+    let a = 0;
+    let b = 1;
+    let next;
+    
+    for (let i = 3; i <= n; i++) {
+      next = a + b;
+      a = b;
+      b = next;
+    }
+    
+    return b;
+  }
+  
+  // Пример использования:
+  //console.log(nthFibo(4)); // Выведет 2
+  
+
 //catch() можно чейнить (цепочкой), чтобы обрабатывать последующие ошибки.
 
 const promise2 = new Promise((resolve, reject) => {
