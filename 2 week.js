@@ -84,3 +84,63 @@ function countFiles(obj) {
 
 const result = countFiles(fileStructure);
 //console.log(result); // должно вывести количество файлов в структуре - 8
+
+//catch() можно чейнить (цепочкой), чтобы обрабатывать последующие ошибки.
+
+const promise2 = new Promise((resolve, reject) => {
+    reject("Ошибка!");
+});
+
+promise2
+    .then(result => {
+        console.log(result);
+    })
+    .catch(error => {					//ловит "Ошибка!" и создаёт новую ошибку (Promise.reject("Новая ошибка!")).
+        console.log(error);
+        return Promise.reject("Новая ошибка!");
+    })
+    .catch(error => {					//ловит эту новую ошибку ("Новая ошибка!").
+        console.log(error); 
+    })
+    .finally(() => {
+        console.log("Завершено!");			//всегда выполняется, даже если промис был отклонён.
+    });
+
+//результат в консоли - Ошибка!, Новая ошибка!, Завершено!
+
+
+//микро и макро таски
+setTimeout(function timeout() {
+ console.log('1');               //ставится в очередь макрозадач.  
+ }, 0);
+
+let p = new Promise(function(resolve, reject) {
+ console.log('2');		//выполняется сразу (из new Promise()).
+ resolve();
+ });
+
+p.then(function(){
+ console.log('3');		//ставится в очередь микрозадач.
+ });
+
+console.log('4');               //выполняется сразу.
+
+// результат консоли 2-4-3-1
+
+
+// задачи стэк вызова: очередь и инвент луп
+console.log(1); 
+
+setTimeout(() => console.log(2));    //Макрозадача → отправляется в очередь таймеров, будет выполнена позже.
+
+Promise.reject(3).catch(console.log);  //Микрозадача → Promise.reject(3) переходит в catch() и выводит 3.
+
+new Promise(resolve => setTimeout(resolve)).then(() => console.log(4)); //Асинхронный setTimeout(resolve) → ставится в очередь макрозадач,
+                                                                         //then(...) выполнится позже.
+Promise.resolve(5).then(console.log);  //Микрозадача → Promise.resolve(5) сразу завершится и then(console.log) выведет 5.
+
+console.log(6);                        //Синхронная задача → выводит 6.
+
+setTimeout(() => console.log(7),0);   //Еще одна макрозадача → ставится в очередь таймеров
+
+//1,6,3,5,2,7,4
