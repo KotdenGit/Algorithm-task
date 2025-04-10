@@ -374,7 +374,7 @@ function getLengthOfShortestWord(str) {
     return str
         .replace(/[.,]/g, '')
         .split(' ')
-        .reduce((a, b) => a.length <= b.length ? a : b)
+        .reduce((a, b) => a.length <= b.length ? a : b) // выбирает один элемент из массива, который меньше по длине
         .length;
 
 }
@@ -483,44 +483,3 @@ function isPalindrome(str) {
   }
 // console.log(isPolyndrome("otto"));
 // console.log(isPolyndrome("ot56to"));
-
-// const promise2 = new Promise((resolve, reject) => {
-//     reject("Ошибка!");
-// });
-
-// promise2
-//     .then(result => {
-//         console.log(result);
-//     })
-//     .catch(error => {
-//         console.log(error);                     //1 Ошибка!
-//         return Promise.reject("Новая ошибка!"); // 
-//     })
-//     .catch(error => {
-//         console.log(error);     //2 Новая ошибка! ???
-//     })
-//     .finally(() => {
-//         console.log("Завершено!");  // 3 Завершено!
-//     });
-
-// setTimeout(function timeout() {
-//     console.log('1'); //
-//     }, 0);  
-   
-//    let p = new Promise(function(resolve, reject) {
-//     console.log('2'); // ??
-//     resolve();
-//     });
-   
-//    p.then(function(){
-//     console.log('3');
-//     });
-   
-//    console.log('4');
-   // 2 4 3 1 
-
-const a = 2;
-
-(function test() {
-  console.log(a);
-})()
